@@ -1,0 +1,12 @@
+[ 2018-12-25T09:47:42+08:00 ] ::1 /sys_vue/Public/images/loaning.gif
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000625s ]
+ERR: 无法加载模块:Public
+
+[ 2018-12-25T09:47:44+08:00 ] ::1 /sys_vue/Public/images/loaning.gif
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000588s ]
+ERR: 无法加载模块:Public
+

@@ -1,0 +1,56 @@
+<layout name="Common/layout"/>
+<div class="container-fluid" id="company">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2>企业管理</h2>
+            </div>
+            <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                <ul class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">企业管理</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover dataTable text-center  js-exportable">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>名称</th>
+                                <th>地址</th>
+                                <th>邮箱</th>
+                                <th>传真</th>
+                                <th>联系电话</th>
+                                <th>备注</th>
+                                <th>负责人</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="(c,index) in companyList">
+                                <td>{{index+1}}</td>
+                                <td>{{c.name}}</td>
+                                <td>{{c.address}}</td>
+                                <td>{{c.email || '-'}}</td>
+                                <td>{{c.fax || '-'}}</td>
+                                <td>{{c.tel || '-'}}</td>
+                                <td>{{c.remark || '-'}}</td>
+                                <td>{{c.boss || '-'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,298 @@
+<layout name="Common/layout"/>
+<div class="container-fluid" id="index">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2>系统首页</h2>
+            </div>
+            <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                <ul class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">系统首页</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card">
+                <div class="body">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="icon-user text-primary font-30"></i>
+                        </div>
+                        <div class="col-6 pt-2">
+                            <h6 class="mb-0">本月新增客户</h6>
+                        </div>
+                        <div class="col-3 font-22 text-center">
+                            <p class="mb-0">6</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card">
+                <div class="body">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="icon-handbag text-col-red font-30"></i>
+                        </div>
+                        <div class="col-6 pt-2">
+                            <h6 class="mb-0">本月新增业务</h6>
+                        </div>
+                        <div class="col-3 font-22 text-center">
+                            15
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card">
+                <div class="body">
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="icon-heart text-col-orange font-30"></i>
+                        </div>
+                        <div class="col-5 pt-2">
+                            <h6 class="mb-0">本月签单</h6>
+                        </div>
+                        <div class="col-5 font-22 text-center">
+                            4
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card">
+                <div class="body">
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="icon-trophy text-success font-30"></i>
+                        </div>
+                        <div class="col-5 pt-2">
+                            <h6 class="mb-0">本月订单</h6>
+                        </div>
+                        <div class="col-5 font-22 text-center">
+                            <i class="fa fa-rmb"></i> 100万
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>统计汇总</h2>
+                </div>
+                <div class="body" style="padding-top: 0">
+                    <div class="row text-center">
+                        <div class="col-6 border-right border-bottom pb-4 pt-4">
+                            <div id="Traffic1" class="carousel vert slide" data-ride="carousel" data-interval="3000">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <label class="mb-0">{{year}}年订单完成率</label>
+                                        <h4 class="font-30 font-weight-bold text-danger">{{project_style.width}}</h4>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <label class="mb-0">今年失败订单</label>
+                                        <h4 class="font-30 font-weight-bold text-danger">0</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 border-bottom pb-4 pt-4">
+                            <div id="Traffic1" class="carousel vert slide" data-ride="carousel" data-interval="3000">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <label class="mb-0">{{year}}年转化率</label>
+                                        <h4 class="font-30 font-weight-bold text-success">{{transferPersent}}%</h4>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <label class="mb-0">今年新增客户</label>
+                                        <h4 class="font-30 font-weight-bold text-primary">52</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header">
+                    <h2>意向签单客户</h2>
+                </div>
+                <div class="body" style="padding-top: 0">
+                    <ul class="right_chat list-unstyled">
+                        <li class="online" v-for="b in starBusiness">
+                            <div class="media">
+                                <div class="media-body">
+                                    <div class="name">
+                                        {{b.customer_name}}、{{b.customer_tel}}
+                                        <small class="float-right">{{b.name}}</small>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        {{b.villagea_name}} {{b.house_id}}
+                                        <div class="float-right">
+                                            <i class="fa fa-star text-primary" v-for="n in Math.floor(b.star)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="header">
+                    <h2>关于森鹰</h2>
+                </div>
+                <div class="body project_report" style="padding-top: 0;padding-bottom: 0">
+                    是一个做窗户的！
+                </div>
+                <div class="header">
+                    <h2>关于E格</h2>
+                </div>
+                <div class="body project_report" style="padding-top: 0;padding-bottom: 0">
+                    是一个做门的！
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>项目 <small>最近项目</small></h2>
+                </div>
+                <div class="body project_report" style="padding-top: 0;padding-bottom: 0">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr v-for="p in nearProject">
+                                <td>
+                                    <span class="badge bg-info text-white" v-if="p.status == 1">进行中</span>
+                                    <span class="badge bg-warning text-white" v-else-if="p.status == 2">已售后</span>
+                                    <span class="badge bg-secondary text-white" v-else-if="p.status == 3">已关闭</span>
+                                </td>
+                                <td class="project-title">
+                                    <h6>{{p.village_name}} {{p.housep_id}}</h6>
+                                    <small>{{p.customer_name}} {{hideTel(p.customer_tel)}}</small>
+                                </td>
+                                <td>
+                                    <small>{{timeAgo(p.create_time)}}</small>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="header">
+                    <h2>业务 <small>最近业务</small></h2>
+                </div>
+                <div class="body project_report" style="padding-top: 0;padding-bottom: 0">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr v-for="b in nearbusiness">
+                                <td>
+                                    <span class="badge badge-success bg-info text-white" v-if="b.status == 0">维护中</span>
+                                    <span class="badge bg-success text-white" v-else-if="b.status == 1">已签单</span>
+                                    <span class="badge bg-danger text-white" v-else>已关闭</span>
+                                </td>
+                                <td class="project-title">
+                                    <h6>{{b.village_name}} {{b.house_id}}</h6>
+                                    <small>{{b.customer_name}} {{hideTel(b.customer_tel)}}</small>
+                                </td>
+                                <td>
+                                    <small>{{timeAgo(b.create_time)}}</small>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>最近更新</h2>
+                    <ul class="nav nav-tabs-new2" style="position: absolute;top: 15px;right: 0px;">
+                        <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#business-update">业务更新</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#project-update">项目更新</a></li>
+                    </ul>
+                </div>
+                <div class="body" style="padding: 0">
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="business-update">
+                            <ul class="list-unstyled basic-list">
+                                <li>
+                                    <p>李建 更新了 威尼斯花园9# 王总 <span class="badge badge-info float-right">维护<i class="fa  fa-hand-o-down "> </i></span></p>
+                                    <small class="p-l-20">客户来店里喝茶，并咨询了产品。<time class="float-right text-primary">2018-10-23</time></small>
+                                </li>
+                                <li>
+                                    <p>李建 更新了 威尼斯花园9# 王总 <span class="badge badge-info float-right">维护<i class="fa  fa-hand-o-down "> </i></span></p>
+                                    <small class="p-l-20">客户来店里喝茶，并咨询了产品。<time class="float-right text-primary">2018-10-23</time></small>
+                                </li>
+                                <li>
+                                    <p>李建 更新了 威尼斯花园9# 王总 <span class="badge badge-info float-right">维护<i class="fa  fa-hand-o-down "> </i></span></p>
+                                    <small class="p-l-20">客户来店里喝茶，并咨询了产品。<time class="float-right text-primary">2018-10-23</time></small>
+                                </li>
+                                <li>
+                                    <p>李建 更新了 威尼斯花园9# 王总 <span class="badge badge-info float-right">维护<i class="fa  fa-hand-o-down "> </i></span></p>
+                                    <small class="p-l-20">客户来店里喝茶，并咨询了产品。<time class="float-right text-primary">2018-10-23</time></small>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="project-update">
+                            <ul class="list-unstyled basic-list">
+                                <li>
+                                    <p>朱子健 更新了 威尼斯花园9# 王总 <span class="badge badge-warning float-right">售后<i class="fa  fa-hand-o-down "> </i></span></p>
+                                    <small class="p-l-20">客户来店里喝茶，并咨询了产品。<time class="float-right text-primary">2018-10-23</time></small>
+                                </li>
+                                <li>
+                                    <p>王小二 更新了 威尼斯花园9# 王总 <span class="badge badge-info float-right">施工<i class="fa  fa-hand-o-down "> </i></span></p>
+                                    <small class="p-l-20">客户来店里喝茶，并咨询了产品。<time class="float-right text-primary">2018-10-23</time></small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card right-box">
+                <div class="header">
+                    <h2>快捷入口</h2>
+                </div>
+                <div class="body" style="padding-top: 0">
+                    <button type="button" class="btn btn-outline-primary mb-2">我的业务</button>
+                    <button type="button" class="btn btn-outline-primary mb-2">待办事项</button>
+                    <button type="button" class="btn btn-outline-primary mb-2">今日任务</button>
+                    <button type="button" class="btn btn-outline-primary mb-2">我的业务</button>
+                    <button type="button" class="btn btn-outline-primary mb-2">我的指标</button>
+                    <button type="button" class="btn btn-outline-primary mb-2">个人信息</button>
+                    <button type="button" class="btn btn-outline-primary mb-2">我的辉煌业绩</button>
+                    <button type="button" class="btn btn-outline-primary mb-2">森鹰门窗</button>
+                    <button type="button" class="btn btn-outline-primary mb-2">关于E格</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="header">
+                    <h2>系统版本</h2>
+                </div>
+                <div class="body" style="padding-top: 0">
+                    <ul class=" list-unstyled basic-list">
+                        <li> 1.0.1 <small class="float-right text-muted">项目管理系统上线</small></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

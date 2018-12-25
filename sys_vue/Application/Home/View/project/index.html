@@ -1,0 +1,181 @@
+<layout name="Common/layout"/>
+<div class="container-fluid" id="project">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2>项目管理</h2>
+            </div>
+            <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                <ul class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">项目管理</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="body">
+                    <ul class="nav nav-tabs-new2">
+                        <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Home-new2">项目列表</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Profile-new2">添加项目</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="Home-new2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover dataTable js-exportable" >
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>项目状态</th>
+                                        <th>地址</th>
+                                        <th>门牌</th>
+                                        <th>客户信息</th>
+                                        <th>业务员</th>
+                                        <th>合同金额(元)</th>
+                                        <th>尾款</th>
+                                        <th>签订日期</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="Profile-new2">
+                            <form id="basic-form" method="post" action="#">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label ><span class="text-danger">*</span>项目地址</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <select class="form-control" required>
+                                                <option v-for="village in villages" :value="village.id">{{village.title}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label><span class="text-danger">*</span>门牌号</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="请输入门牌号"  required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label><span class="text-danger">*</span>客户 </label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <div class="form-group">
+                                                <div class="select-customer-container">
+                                                    <select class="form-control" required>
+                                                        <option>选择客户信息</option>
+                                                        <option v-for="customer in customers">{{customer.name}}、{{customer.tel}}【{{customer.remark}}】</option>
+                                                    </select>
+                                                    <div class="ml-2">
+                                                        <button type="button" class="btn btn-outline-dark float-right"><i class="fa fa-plus"></i>添加客户</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label><span class="text-danger">*</span>业务员</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <select class="form-control" required >
+                                                <option v-for="staff in staffs" :value="staff.id">{{staff.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label><span class="text-danger">*</span>金额</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-rmb"></i></span>
+                                                        </div>
+                                                        <input type="number" class="form-control" v-model="project_money"  required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">尾款</span>
+                                                        </div>
+                                                        <input type="number" class="form-control" v-model="project_money"  required readonly>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label><span class="text-danger">*</span>签订日期</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="icon-calendar"></i></span>
+                                                </div>
+                                                <input type="date" class="form-control" placeholder="签订日期"  required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label><span class="text-danger">*</span>订单图</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <input type="file" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group m-t-35">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1"></div>
+                                        <div class="col-lg-11 col-10">
+                                            <button type="submit" class="btn btn-primary">确认添加</button>
+                                            <button type="reset" class="btn btn-dark">重置</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

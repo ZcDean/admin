@@ -1,0 +1,177 @@
+<layout name="Common/layout"/>
+<div class="container-fluid" id="group">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2>职位管理</h2>
+            </div>
+            <div class="col-lg-7 col-md-2 col-sm-12 text-right">
+                <ul class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">职位管理</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="body">
+                    <ul class="nav nav-tabs-new2">
+                        <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Home-new2" data-index="0">职位列表</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#add-finance" data-index="1">添加职位</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane  active show" id="Home-new2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover text-center " id="group-list">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>职位名称</th>
+                                        <th>职位描述</th>
+                                        <th>状态</th>
+                                        <th>权限列表</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="(g,index) in groupList">
+                                        <td>{{index+1}}</td>
+                                        <td>{{g.title}}</td>
+                                        <td>{{g.description || '-'}}</td>
+                                        <td><span class='badge badge-success' v-if="g.status==1">可用</span>
+                                            <span class='badge badge-danger' v-else>不可用</span></td>
+                                        <td>
+                                                <span class="badge badge-info" v-for="r in g.ch_rules">
+                                                    {{r}}
+                                                </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-warning" v-if="g.can_del==0">该职位不可操作！</span>
+                                            <section v-else-if="g.can_del==1">
+                                                <button class="btn btn-outline-primary btn-edit-group" :data-index="index" title="编辑"><i class="icon icon-pencil"></i></button>
+                                                <button class="btn btn-outline-secondary" v-show="g.status==1" title="禁用"><i class="icon icon-lock"></i></button>
+                                                <button class="btn btn-outline-secondary" v-show="g.status!=1" title="解锁"><i class="icon icon-lock-open"></i></button>
+                                                <button class="btn btn-outline-danger btn-remove-group" :data-gid="g.id"  title="删除"><i class="glyphicon glyphicon-remove"></i></button>
+                                            </section>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="add-finance">
+                            ####
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--//修改权限弹窗-->
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="title" id="largeModalLabel">职位编辑</h4>
+                </div>
+                <div class="modal-body" style="font-size: 16px;">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 l-h-36">名称</div>
+                            <div class="col-11">
+                                <input class="form-control"  v-model="editTitle">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1">描述</div>
+                            <div class="col-11">
+                                <textarea class="form-control" rows="2" v-model="editDesctiption">
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1">权限</div>
+                            <div class="col-11">
+                                <!--<table class="table table-bordered my-table">-->
+                                <!--<thead>-->
+                                <!--<tr>-->
+                                <!--<th>职位</th>-->
+                                <!--<th width="90%">权限列表</th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <!--<tbody>-->
+                                <!--<tr>-->
+
+                                <!--<td class="text-center" style="vertical-align: middle">总经理                                                                    </td>-->
+                                <!--<td>-->
+                                <!---->
+
+                                <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                <!--<td rowspan="2"></td>-->
+                                <!--<td>-->
+                                <!--<label for="checkAll">全选</label>-->
+                                <!--<input type="checkbox" id="checkAll">-->
+                                <!--</td>-->
+                                <!--</tr>-->
+                                <!--</tbody>-->
+                                <!--</table>-->
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <tr v-for="(r, key, i) in ruleListhg">
+                                        <td width="10%" style="vertical-align: middle;text-align: center">
+                                            <label class="fancy-checkbox">
+                                                <input type="checkbox" name="checkbox" :for="key" :id="key">
+                                                <span>{{getAuthBelong(key)}}</span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-2 col-sm-3" v-for="(item,index) in r">
+                                                    <label class="fancy-checkbox">
+                                                        <input type="checkbox" name="checkbox" :value="item.id" :name="'actions['+key+'][]'" checked v-if="editRules.indexOf(item.id) > -1" >
+                                                        <input type="checkbox" name="checkbox" :value="item.id" :name="'actions['+key+'][]'"  v-else>
+                                                        <span>{{item.title}}</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="10%" style="vertical-align: middle;text-align: center">
+                                        </td>
+                                        <td>
+                                            <label class="fancy-checkbox">
+                                                <input type="checkbox" name="checkbox" id="checkAll">
+                                                <span>全选</span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

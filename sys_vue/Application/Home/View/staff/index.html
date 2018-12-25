@@ -1,0 +1,172 @@
+<layout name="Common/layout"/>
+<div class="container-fluid" id="staff">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 col-sm-12">
+                <h2>员工管理</h2>
+            </div>
+            <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                <ul class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item">员工管理</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="body">
+                    <ul class="nav nav-tabs-new2">
+                        <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Home-new2">员工列表</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Profile-new2">添加员工</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane  active show" id="Home-new2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover dataTable text-center  js-exportable">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>状态</th>
+                                        <th>姓名</th>
+                                        <th>联系方式</th>
+                                        <th>职位</th>
+                                        <th>跟踪业务</th>
+                                        <th>签单次数</th>
+                                        <th>累计合同金额</th>
+                                        <th>入职时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="Profile-new2">
+                            <form id="basic-form" method="post">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label ><span class="text-danger">*</span>姓名</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <input type="text" class="form-control" placeholder="填写姓名" name="name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label ><span class="text-danger">*</span>电话</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <input type="tel" class="form-control" placeholder="联系方式" name="tel" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label ><span class="text-danger">*</span>职位</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <select class="form-control" name="group_id">
+                                                <option>请选择职位</option>
+                                                <option v-for="j in jobList" :value="j.id" v-if="j.id != 1">{{j.title}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label ><span class="text-danger">*</span>单位</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <select class="form-control" name="company_id">
+                                                <option v-for="c in companyList" :value="c.id">{{c.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1 l-h-36">
+                                            <label >邮箱</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <input type="email" class="form-control" placeholder="邮箱" name="email" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1">
+                                            <label >性别</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <div class="">
+                                                <label class="fancy-radio">
+                                                    <input type="radio" name="sex" value="0" required="" >
+                                                    <span><i></i>男</span>
+                                                </label>
+                                                <label class="fancy-radio">
+                                                    <input type="radio" name="sex" value="1" >
+                                                    <span><i></i>女</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1">
+                                            <label><span class="text-danger">*</span>状态</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <div class="">
+                                                <label class="fancy-radio">
+                                                    <input type="radio" name="status" value="1" required="" checked>
+                                                    <span><i></i>可用</span>
+                                                </label>
+                                                <label class="fancy-radio">
+                                                    <input type="radio" name="status" value="0" >
+                                                    <span><i></i>不可用</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1">
+                                            <label><span class="text-danger">*</span>入职时间</label>
+                                        </div>
+                                        <div class="col-lg-11 col-10">
+                                            <input class="form-control" type="date" name="work_time" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2 col-lg-1">
+                                        </div>
+                                        <div class="col-10 col-lg-11">
+                                            <button type="submit" class="btn btn-primary" id="btn-submit">确认添加</button>
+                                            <button type="reset" class="btn btn-dark">重置</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
